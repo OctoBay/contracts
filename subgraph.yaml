@@ -1,0 +1,172 @@
+specVersion: 0.0.2
+description: Octobay
+repository: https://github.com/octobay/subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Octobay
+    network: kovan
+    source:
+      address: '0xebA62e624596042F97f57120A490Dd78750B41f9'
+      abi: Octobay
+      startBlock: 24674539
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Config
+      abis:
+        - name: Octobay
+          file: ./abis/Octobay.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: SetTrustedForwarderEvent(address)
+          handler: handleSetTrustedForwarderEvent
+        - event: SetUserAddressStorageEvent(address)
+          handler: handleSetUserAddressStorageEvent
+        - event: SetOracleStorageEvent(address)
+          handler: handleSetOracleStorageEvent
+        - event: SetDepositStorageEvent(address)
+          handler: handleSetDepositStorageEvent
+        - event: SetOctobayGovernorEvent(address)
+          handler: handleSetOctobayGovernorEvent
+        - event: SetOctobayGovNFTEvent(address)
+          handler: handleSetOctobayGovNFTEvent
+        - event: SetEthUSDPriceFeedEvent(address)
+          handler: handleSetEthUSDPriceFeedEvent
+      file: ./mappings/octobay.ts
+  - kind: ethereum/contract
+    name: DepositStorage
+    network: kovan
+    source:
+      address: '0x8b648a4148F4bF3Cdf95175D8ad22FCcC962Bb0f'
+      abi: DepositStorage
+      startBlock: 24674539
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Issue
+        - IssueDeposit
+        - User
+        - UserDeposit
+      abis:
+        - name: DepositStorage
+          file: ./abis/DepositStorage.json
+      eventHandlers:
+        - event: IssueDepositEvent(address,uint256,string,uint256)
+          handler: handleIssueDepositEvent
+        - event: WithdrawIssueDepositsEvent(string)
+          handler: handleWithdrawIssueDepositsEvent
+        - event: RefundIssueDepositEvent(uint256)
+          handler: handleRefundIssueDepositEvent
+        - event: UserDepositEvent(address,uint256,string,uint256)
+          handler: handleUserDepositEvent
+        - event: WithdrawUserDepositEvent(uint256)
+          handler: handleWithdrawUserDepositEvent
+        - event: RefundUserDepositEvent(uint256)
+          handler: handleRefundUserDepositEvent
+      file: ./mappings/deposit-storage.ts
+  - kind: ethereum/contract
+    name: UserAddressStorage
+    network: kovan
+    source:
+      address: '0x2FD475158789Fe702B56522217cc2b6a33D5959A'
+      abi: UserAddressStorage
+      startBlock: 24674539
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - UserAddress
+      abis:
+        - name: UserAddressStorage
+          file: ./abis/UserAddressStorage.json
+      eventHandlers:
+        - event: UserAddressAddedEvent(string,bytes32,address)
+          handler: handleUserAddressAddedEvent
+      file: ./mappings/user-address-storage.ts
+  - kind: ethereum/contract
+    name: OracleStorage
+    network: kovan
+    source:
+      address: '0x8c9035A830d375Fe42f7e6a18B67482820Afa5b4'
+      abi: OracleStorage
+      startBlock: 24674539
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Oracle
+        - OracleJob
+      abis:
+        - name: OracleStorage
+          file: ./abis/OracleStorage.json
+      eventHandlers:
+        - event: OracleAddedEvent(address,string)
+          handler: handleOracleAddedEvent
+        - event: OracleRemovedEvent(address)
+          handler: handleOracleRemovedEvent
+        - event: OracleJobAddedEvent(address,string,bytes32)
+          handler: handleOracleJobAddedEvent
+        - event: OracleJobRemovedEvent(address,string,bytes32)
+          handler: handleOracleJobRemovedEvent
+      file: ./mappings/oracle-storage.ts
+  - kind: ethereum/contract
+    name: OctobayGovernor
+    network: kovan
+    source:
+      address: '0xc85EcBB6d32EcbF307553aebeDbc7bC23129766D'
+      abi: OctobayGovernor
+      startBlock: 24674539
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - GovernanceDepartment
+        - GovernanceTokenHolder
+        - GovernanceProposal
+        - GovernanceProposalVote
+      abis:
+        - name: OctobayGovernor
+          file: ./abis/OctobayGovernor.json
+      eventHandlers:
+        - event: DepartmentCreatedEvent(address,string,uint16,uint16,string,string,address)
+          handler: handleDepartmentCreatedEvent
+        - event: ProposalCreatedEvent(address,string,uint256,uint256,uint16,address,uint256,uint256)
+          handler: handleProposalCreatedEvent
+        - event: VoteCastEvent(address,uint256,string,int16,address)
+          handler: handleVoteCastEvent
+        - event: AwardGovernanceTokensEvent(address,uint256,address)
+          handler: handleAwardGovernanceTokensEvent
+      file: ./mappings/governor.ts
+  - kind: ethereum/contract
+    name: OctobayGovNFT
+    network: kovan
+    source:
+      address: '0x399789E892053C017b07158bc0bE03E03D9536Ed'
+      abi: OctobayGovNFT
+      startBlock: 24674539
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - GovernancePermissionNFT
+      abis:
+        - name: OctobayGovNFT
+          file: ./abis/OctobayGovNFT.json
+      eventHandlers:
+        - event: MintNFTForGovTokenEvent(address,uint256,address)
+          handler: handleMintNFTForGovTokenEvent
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./mappings/govnft.ts

@@ -1,0 +1,773 @@
+{
+  "contractName": "GsnTypes",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@opengsn/gsn/contracts/interfaces/GsnTypes.sol\":\"GsnTypes\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":100},\"remappings\":[]},\"sources\":{\"@opengsn/gsn/contracts/forwarder/IForwarder.sol\":{\"keccak256\":\"0x253fd0f17ff0a73a96d83570b9d6bdc027b64e3ff0aca19d6c0b621bd5156aee\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fd3169e07849f996eb281bf4700cea430e45eda54a80169f0a360362cc2a8e84\",\"dweb:/ipfs/QmXa1x3UpA9tAa26Fwf4b4MkVqeEfEFgDPhNfRMtwJuoms\"]},\"@opengsn/gsn/contracts/interfaces/GsnTypes.sol\":{\"keccak256\":\"0xedcb9a8dfeed8c622844c604c5ebdb3a9fb92f859a1530b9327fb85476206062\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5fba2e08a6793d60d41c49c817a8837f7fdec6706950e804f79bac0a88b9bad0\",\"dweb:/ipfs/QmPnrUNzGvshVLrSmgBN4kB2Z2NXTzCyWuegjHo15292uD\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier:MIT\npragma solidity ^0.6.2;\n\nimport \"../forwarder/IForwarder.sol\";\n\ninterface GsnTypes {\n    struct RelayData {\n        uint256 gasPrice;\n        uint256 pctRelayFee;\n        uint256 baseRelayFee;\n        address relayWorker;\n        address paymaster;\n        bytes paymasterData;\n        uint256 clientId;\n        address forwarder;\n    }\n\n    //note: must start with the ForwardRequest to be an extension of the generic forwarder\n    struct RelayRequest {\n        IForwarder.ForwardRequest request;\n        RelayData relayData;\n    }\n}\n",
+  "sourcePath": "@opengsn/gsn/contracts/interfaces/GsnTypes.sol",
+  "ast": {
+    "absolutePath": "@opengsn/gsn/contracts/interfaces/GsnTypes.sol",
+    "exportedSymbols": {
+      "GsnTypes": [
+        8813
+      ]
+    },
+    "id": 8814,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8789,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "31:23:46"
+      },
+      {
+        "absolutePath": "@opengsn/gsn/contracts/forwarder/IForwarder.sol",
+        "file": "../forwarder/IForwarder.sol",
+        "id": 8790,
+        "nodeType": "ImportDirective",
+        "scope": 8814,
+        "sourceUnit": 8788,
+        "src": "56:37:46",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 8813,
+        "linearizedBaseContracts": [
+          8813
+        ],
+        "name": "GsnTypes",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "GsnTypes.RelayData",
+            "id": 8807,
+            "members": [
+              {
+                "constant": false,
+                "id": 8792,
+                "mutability": "mutable",
+                "name": "gasPrice",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8807,
+                "src": "147:16:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 8791,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "147:7:46",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8794,
+                "mutability": "mutable",
+                "name": "pctRelayFee",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8807,
+                "src": "173:19:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 8793,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "173:7:46",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8796,
+                "mutability": "mutable",
+                "name": "baseRelayFee",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8807,
+                "src": "202:20:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 8795,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "202:7:46",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8798,
+                "mutability": "mutable",
+                "name": "relayWorker",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8807,
+                "src": "232:19:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 8797,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "232:7:46",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8800,
+                "mutability": "mutable",
+                "name": "paymaster",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8807,
+                "src": "261:17:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 8799,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "261:7:46",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8802,
+                "mutability": "mutable",
+                "name": "paymasterData",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8807,
+                "src": "288:19:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                },
+                "typeName": {
+                  "id": 8801,
+                  "name": "bytes",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "288:5:46",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_storage_ptr",
+                    "typeString": "bytes"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8804,
+                "mutability": "mutable",
+                "name": "clientId",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8807,
+                "src": "317:16:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 8803,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "317:7:46",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8806,
+                "mutability": "mutable",
+                "name": "forwarder",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8807,
+                "src": "343:17:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 8805,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "343:7:46",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "RelayData",
+            "nodeType": "StructDefinition",
+            "scope": 8813,
+            "src": "120:247:46",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "GsnTypes.RelayRequest",
+            "id": 8812,
+            "members": [
+              {
+                "constant": false,
+                "id": 8809,
+                "mutability": "mutable",
+                "name": "request",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8812,
+                "src": "494:33:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_ForwardRequest_$8731_storage_ptr",
+                  "typeString": "struct IForwarder.ForwardRequest"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 8808,
+                  "name": "IForwarder.ForwardRequest",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 8731,
+                  "src": "494:25:46",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ForwardRequest_$8731_storage_ptr",
+                    "typeString": "struct IForwarder.ForwardRequest"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8811,
+                "mutability": "mutable",
+                "name": "relayData",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 8812,
+                "src": "537:19:46",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_RelayData_$8807_storage_ptr",
+                  "typeString": "struct GsnTypes.RelayData"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 8810,
+                  "name": "RelayData",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 8807,
+                  "src": "537:9:46",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_RelayData_$8807_storage_ptr",
+                    "typeString": "struct GsnTypes.RelayData"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "RelayRequest",
+            "nodeType": "StructDefinition",
+            "scope": 8813,
+            "src": "464:99:46",
+            "visibility": "public"
+          }
+        ],
+        "scope": 8814,
+        "src": "95:470:46"
+      }
+    ],
+    "src": "31:535:46"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "@opengsn/gsn/contracts/interfaces/GsnTypes.sol",
+      "exportedSymbols": {
+        "GsnTypes": [
+          8813
+        ]
+      },
+      "license": "MIT"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".2"
+          ]
+        },
+        "id": 8789,
+        "name": "PragmaDirective",
+        "src": "31:23:46"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 8788,
+          "absolutePath": "@opengsn/gsn/contracts/forwarder/IForwarder.sol",
+          "file": "../forwarder/IForwarder.sol",
+          "scope": 8814,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 8790,
+        "name": "ImportDirective",
+        "src": "56:37:46"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            8813
+          ],
+          "name": "GsnTypes",
+          "scope": 8814
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "GsnTypes.RelayData",
+              "name": "RelayData",
+              "scope": 8813,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "gasPrice",
+                  "overrides": null,
+                  "scope": 8807,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 8791,
+                    "name": "ElementaryTypeName",
+                    "src": "147:7:46"
+                  }
+                ],
+                "id": 8792,
+                "name": "VariableDeclaration",
+                "src": "147:16:46"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "pctRelayFee",
+                  "overrides": null,
+                  "scope": 8807,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 8793,
+                    "name": "ElementaryTypeName",
+                    "src": "173:7:46"
+                  }
+                ],
+                "id": 8794,
+                "name": "VariableDeclaration",
+                "src": "173:19:46"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "baseRelayFee",
+                  "overrides": null,
+                  "scope": 8807,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 8795,
+                    "name": "ElementaryTypeName",
+                    "src": "202:7:46"
+                  }
+                ],
+                "id": 8796,
+                "name": "VariableDeclaration",
+                "src": "202:20:46"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "relayWorker",
+                  "overrides": null,
+                  "scope": 8807,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 8797,
+                    "name": "ElementaryTypeName",
+                    "src": "232:7:46"
+                  }
+                ],
+                "id": 8798,
+                "name": "VariableDeclaration",
+                "src": "232:19:46"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "paymaster",
+                  "overrides": null,
+                  "scope": 8807,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 8799,
+                    "name": "ElementaryTypeName",
+                    "src": "261:7:46"
+                  }
+                ],
+                "id": 8800,
+                "name": "VariableDeclaration",
+                "src": "261:17:46"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "paymasterData",
+                  "overrides": null,
+                  "scope": 8807,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes",
+                      "type": "bytes"
+                    },
+                    "id": 8801,
+                    "name": "ElementaryTypeName",
+                    "src": "288:5:46"
+                  }
+                ],
+                "id": 8802,
+                "name": "VariableDeclaration",
+                "src": "288:19:46"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "clientId",
+                  "overrides": null,
+                  "scope": 8807,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 8803,
+                    "name": "ElementaryTypeName",
+                    "src": "317:7:46"
+                  }
+                ],
+                "id": 8804,
+                "name": "VariableDeclaration",
+                "src": "317:16:46"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "forwarder",
+                  "overrides": null,
+                  "scope": 8807,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 8805,
+                    "name": "ElementaryTypeName",
+                    "src": "343:7:46"
+                  }
+                ],
+                "id": 8806,
+                "name": "VariableDeclaration",
+                "src": "343:17:46"
+              }
+            ],
+            "id": 8807,
+            "name": "StructDefinition",
+            "src": "120:247:46"
+          },
+          {
+            "attributes": {
+              "canonicalName": "GsnTypes.RelayRequest",
+              "name": "RelayRequest",
+              "scope": 8813,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "request",
+                  "overrides": null,
+                  "scope": 8812,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct IForwarder.ForwardRequest",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "IForwarder.ForwardRequest",
+                      "referencedDeclaration": 8731,
+                      "type": "struct IForwarder.ForwardRequest"
+                    },
+                    "id": 8808,
+                    "name": "UserDefinedTypeName",
+                    "src": "494:25:46"
+                  }
+                ],
+                "id": 8809,
+                "name": "VariableDeclaration",
+                "src": "494:33:46"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "relayData",
+                  "overrides": null,
+                  "scope": 8812,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct GsnTypes.RelayData",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "RelayData",
+                      "referencedDeclaration": 8807,
+                      "type": "struct GsnTypes.RelayData"
+                    },
+                    "id": 8810,
+                    "name": "UserDefinedTypeName",
+                    "src": "537:9:46"
+                  }
+                ],
+                "id": 8811,
+                "name": "VariableDeclaration",
+                "src": "537:19:46"
+              }
+            ],
+            "id": 8812,
+            "name": "StructDefinition",
+            "src": "464:99:46"
+          }
+        ],
+        "id": 8813,
+        "name": "ContractDefinition",
+        "src": "95:470:46"
+      }
+    ],
+    "id": 8814,
+    "name": "SourceUnit",
+    "src": "31:535:46"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-31T23:15:15.141Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
