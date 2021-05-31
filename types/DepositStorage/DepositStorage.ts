@@ -700,40 +700,6 @@ export class TransferOwnershipCall__Outputs {
   }
 }
 
-export class DeductGasFeeCall extends ethereum.Call {
-  get inputs(): DeductGasFeeCall__Inputs {
-    return new DeductGasFeeCall__Inputs(this);
-  }
-
-  get outputs(): DeductGasFeeCall__Outputs {
-    return new DeductGasFeeCall__Outputs(this);
-  }
-}
-
-export class DeductGasFeeCall__Inputs {
-  _call: DeductGasFeeCall;
-
-  constructor(call: DeductGasFeeCall) {
-    this._call = call;
-  }
-
-  get _githubUserId(): string {
-    return this._call.inputValues[0].value.toString();
-  }
-
-  get _amount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class DeductGasFeeCall__Outputs {
-  _call: DeductGasFeeCall;
-
-  constructor(call: DeductGasFeeCall) {
-    this._call = call;
-  }
-}
-
 export class DepositEthForGithubUserCall extends ethereum.Call {
   get inputs(): DepositEthForGithubUserCall__Inputs {
     return new DepositEthForGithubUserCall__Inputs(this);

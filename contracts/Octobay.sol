@@ -5,7 +5,6 @@ pragma experimental ABIEncoderV2;
 import '@openzeppelin/contracts/access/Ownable.sol';
 import '@chainlink/contracts/src/v0.6/ChainlinkClient.sol';
 import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
-import '@opengsn/gsn/contracts/BaseRelayRecipient.sol';
 import './UserAddressStorage.sol';
 import './OracleStorage.sol';
 import './OctobayGovToken.sol';
@@ -13,11 +12,10 @@ import './OctobayGovernor.sol';
 import './OctobayGovNFT.sol';
 import './DepositStorage.sol';
 
-contract Octobay is Ownable, ChainlinkClient, BaseRelayRecipient {
+contract Octobay is Ownable, ChainlinkClient {
 
     constructor(
         address _link,
-        address _forwarder,
         address _userAddressStorage,
         address _oracleStorage,
         address _depositStorage,
@@ -26,7 +24,6 @@ contract Octobay is Ownable, ChainlinkClient, BaseRelayRecipient {
         address _ethUSDPriceFeed
     ) public {
         setChainlinkToken(_link);
-        _setTrustedForwarder(_forwarder); // GSN trusted forwarder
         _setUserAddressStorage(_userAddressStorage);
         _setOracleStorage(_oracleStorage);
         _setDepositStorage(_depositStorage);
@@ -37,17 +34,12 @@ contract Octobay is Ownable, ChainlinkClient, BaseRelayRecipient {
 
     // ------------ Set contract addresses ------------ //
 
-    event SetTrustedForwarderEvent(address forwarder);
     event SetUserAddressStorageEvent(address addressStorage);
     event SetOracleStorageEvent(address oracleStorage);
     event SetDepositStorageEvent(address depositStorage);
     event SetOctobayGovernorEvent(address octobayGovernor);
     event SetOctobayGovNFTEvent(address octobayGovNFT);
     event SetEthUSDPriceFeedEvent(address ethUsdPriceFeed);
-
-    function setTrustedForwarder(address _forwarder) external onlyOwner {
-        _setTrustedForwarder(_forwarder);
-    }
 
     function setUserAddressStorage(address _userAddressStorage) external onlyOwner {
         _setUserAddressStorage(_userAddressStorage);
@@ -71,11 +63,6 @@ contract Octobay is Ownable, ChainlinkClient, BaseRelayRecipient {
 
     function setEthUSDPriceFeed(address _ethUSDPriceFeed) external onlyOwner {
         _setEthUSDPriceFeed(_ethUSDPriceFeed);
-    }
-
-    function _setTrustedForwarder(address _forwarder) internal {
-        trustedForwarder = _forwarder;
-        emit SetTrustedForwarderEvent(_forwarder);
     }
 
     function _setUserAddressStorage(address _userAddressStorage) internal {
@@ -149,34 +136,6 @@ contract Octobay is Ownable, ChainlinkClient, BaseRelayRecipient {
         oracleStorage.removeOracleJob(_oracle, _jobName);
     }
 
-    // ------------ GSN ------------ //
-
-
-    address octobayPaymaster;
-
-    function setPaymaster(address _octobayPaymaster) external onlyOwner {
-        octobayPaymaster = _octobayPaymaster;
-    }
-
-    function _msgSender() internal override(Context, BaseRelayRecipient)
-    view returns (address payable) {
-        return BaseRelayRecipient._msgSender();
-    }
-
-    function _msgData() internal override(Context, BaseRelayRecipient)
-    view returns (bytes memory ret) {
-        return BaseRelayRecipient._msgData();
-    }
-
-    string public override versionRecipient = '2.0.0'; // GSN version
-
-    function deductGasFee(string calldata _githubUserId, uint256 _amount)
-        external
-    {
-        // only paymaster, cause paymaster pays for gas fee on behalf of user
-        require(msg.sender == octobayPaymaster);
-        depositStorage.deductGasFee(_githubUserId, _amount);
-    }
 
 
 

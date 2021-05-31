@@ -42,15 +42,6 @@ contract DepositStorage is OctobayStorage {
     mapping(string => IssueStatus) public issueStatusByIssueId;
     mapping(string => OctobayGovToken) public govTokenByIssueId;
 
-    // ------------ GSN ------------ //
-
-    function deductGasFee(string calldata _githubUserId, uint256 _amount)
-        external onlyOctobay
-    {
-        require(userClaimAmountByGithbUserId[_githubUserId] >= _amount, 'Not enough funds to pay gasFee');
-        userClaimAmountByGithbUserId[_githubUserId] -= _amount;
-    }
-
     // ------------ USER DEPOSITS ------------ //
 
     event UserDepositEvent(address from, uint256 amount, string githubUserId, uint256 depositId);

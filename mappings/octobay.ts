@@ -1,6 +1,5 @@
 import {
   OwnershipTransferred,
-  SetTrustedForwarderEvent,
   SetUserAddressStorageEvent,
   SetOracleStorageEvent,
   SetDepositStorageEvent,
@@ -21,12 +20,6 @@ function loadConfig(event: ethereum.Event): Config {
 export function handleOwnershipTransferred(event: OwnershipTransferred): void {
   let config = loadConfig(event)
   config.owner = event.params.newOwner
-  config.save()
-}
-
-export function handleSetTrustedForwarderEvent(event: SetTrustedForwarderEvent): void {
-  let config = loadConfig(event)
-  config.trustedForwarder = event.params.forwarder
   config.save()
 }
 

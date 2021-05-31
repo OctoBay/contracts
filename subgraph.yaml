@@ -23,8 +23,6 @@ dataSources:
       eventHandlers:
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
-        - event: SetTrustedForwarderEvent(address)
-          handler: handleSetTrustedForwarderEvent
         - event: SetUserAddressStorageEvent(address)
           handler: handleSetUserAddressStorageEvent
         - event: SetOracleStorageEvent(address)

@@ -176,24 +176,6 @@ export class SetOracleStorageEvent__Params {
   }
 }
 
-export class SetTrustedForwarderEvent extends ethereum.Event {
-  get params(): SetTrustedForwarderEvent__Params {
-    return new SetTrustedForwarderEvent__Params(this);
-  }
-}
-
-export class SetTrustedForwarderEvent__Params {
-  _event: SetTrustedForwarderEvent;
-
-  constructor(event: SetTrustedForwarderEvent) {
-    this._event = event;
-  }
-
-  get forwarder(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-}
-
 export class SetUserAddressStorageEvent extends ethereum.Event {
   get params(): SetUserAddressStorageEvent__Params {
     return new SetUserAddressStorageEvent__Params(this);
@@ -332,29 +314,6 @@ export class Octobay extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  isTrustedForwarder(forwarder: Address): boolean {
-    let result = super.call(
-      "isTrustedForwarder",
-      "isTrustedForwarder(address):(bool)",
-      [ethereum.Value.fromAddress(forwarder)]
-    );
-
-    return result[0].toBoolean();
-  }
-
-  try_isTrustedForwarder(forwarder: Address): ethereum.CallResult<boolean> {
-    let result = super.tryCall(
-      "isTrustedForwarder",
-      "isTrustedForwarder(address):(bool)",
-      [ethereum.Value.fromAddress(forwarder)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   issueWithdrawRequests(param0: Bytes): Octobay__issueWithdrawRequestsResult {
@@ -507,29 +466,6 @@ export class Octobay extends ethereum.SmartContract {
     );
   }
 
-  trustedForwarder(): Address {
-    let result = super.call(
-      "trustedForwarder",
-      "trustedForwarder():(address)",
-      []
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_trustedForwarder(): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "trustedForwarder",
-      "trustedForwarder():(address)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
   userAddressRegistrations(
     param0: Bytes
   ): Octobay__userAddressRegistrationsResult {
@@ -586,29 +522,6 @@ export class Octobay extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  versionRecipient(): string {
-    let result = super.call(
-      "versionRecipient",
-      "versionRecipient():(string)",
-      []
-    );
-
-    return result[0].toString();
-  }
-
-  try_versionRecipient(): ethereum.CallResult<string> {
-    let result = super.tryCall(
-      "versionRecipient",
-      "versionRecipient():(string)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toString());
   }
 
   registerUserAddress(_oracle: Address, _githubUserId: string): Bytes {
@@ -726,32 +639,28 @@ export class ConstructorCall__Inputs {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get _forwarder(): Address {
+  get _userAddressStorage(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 
-  get _userAddressStorage(): Address {
+  get _oracleStorage(): Address {
     return this._call.inputValues[2].value.toAddress();
   }
 
-  get _oracleStorage(): Address {
+  get _depositStorage(): Address {
     return this._call.inputValues[3].value.toAddress();
   }
 
-  get _depositStorage(): Address {
+  get _octobayGovernor(): Address {
     return this._call.inputValues[4].value.toAddress();
   }
 
-  get _octobayGovernor(): Address {
+  get _octobayGovNFT(): Address {
     return this._call.inputValues[5].value.toAddress();
   }
 
-  get _octobayGovNFT(): Address {
-    return this._call.inputValues[6].value.toAddress();
-  }
-
   get _ethUSDPriceFeed(): Address {
-    return this._call.inputValues[7].value.toAddress();
+    return this._call.inputValues[6].value.toAddress();
   }
 }
 
@@ -815,36 +724,6 @@ export class TransferOwnershipCall__Outputs {
   _call: TransferOwnershipCall;
 
   constructor(call: TransferOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class SetTrustedForwarderCall extends ethereum.Call {
-  get inputs(): SetTrustedForwarderCall__Inputs {
-    return new SetTrustedForwarderCall__Inputs(this);
-  }
-
-  get outputs(): SetTrustedForwarderCall__Outputs {
-    return new SetTrustedForwarderCall__Outputs(this);
-  }
-}
-
-export class SetTrustedForwarderCall__Inputs {
-  _call: SetTrustedForwarderCall;
-
-  constructor(call: SetTrustedForwarderCall) {
-    this._call = call;
-  }
-
-  get _forwarder(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class SetTrustedForwarderCall__Outputs {
-  _call: SetTrustedForwarderCall;
-
-  constructor(call: SetTrustedForwarderCall) {
     this._call = call;
   }
 }
@@ -1225,70 +1104,6 @@ export class RemoveOracleJobCall__Outputs {
   _call: RemoveOracleJobCall;
 
   constructor(call: RemoveOracleJobCall) {
-    this._call = call;
-  }
-}
-
-export class SetPaymasterCall extends ethereum.Call {
-  get inputs(): SetPaymasterCall__Inputs {
-    return new SetPaymasterCall__Inputs(this);
-  }
-
-  get outputs(): SetPaymasterCall__Outputs {
-    return new SetPaymasterCall__Outputs(this);
-  }
-}
-
-export class SetPaymasterCall__Inputs {
-  _call: SetPaymasterCall;
-
-  constructor(call: SetPaymasterCall) {
-    this._call = call;
-  }
-
-  get _octobayPaymaster(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class SetPaymasterCall__Outputs {
-  _call: SetPaymasterCall;
-
-  constructor(call: SetPaymasterCall) {
-    this._call = call;
-  }
-}
-
-export class DeductGasFeeCall extends ethereum.Call {
-  get inputs(): DeductGasFeeCall__Inputs {
-    return new DeductGasFeeCall__Inputs(this);
-  }
-
-  get outputs(): DeductGasFeeCall__Outputs {
-    return new DeductGasFeeCall__Outputs(this);
-  }
-}
-
-export class DeductGasFeeCall__Inputs {
-  _call: DeductGasFeeCall;
-
-  constructor(call: DeductGasFeeCall) {
-    this._call = call;
-  }
-
-  get _githubUserId(): string {
-    return this._call.inputValues[0].value.toString();
-  }
-
-  get _amount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class DeductGasFeeCall__Outputs {
-  _call: DeductGasFeeCall;
-
-  constructor(call: DeductGasFeeCall) {
     this._call = call;
   }
 }

@@ -4,7 +4,6 @@ A config object reflecting certain Octobay contract properties.
 type Config @entity {
   id: ID!
   owner: Bytes
-  trustedForwarder: Bytes
   userAddressStorage: Bytes
   oracleStorage: Bytes
   depositStorage: Bytes
