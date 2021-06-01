@@ -1,4 +1,4 @@
-name: "Update Development Deployment"
+name: "Update Development Deployment (Kovan)"
 
 on:
   push:
@@ -7,42 +7,64 @@ on:
       - 'contracts/**'
 
 jobs:
-  deploy:
-    name: Deploy Contracts and Subgraph (Kovan)
+  deploy-contracts:
+    name: Deploy Contracts
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.15.5'
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.15.5'
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Set environment variables
-      run: |
-        export MNEMONIC=${{ secrets.MNEMONIC }}
-        export KOVAN_RPC_NODE=${{ secrets.KOVAN_RPC_NODE }}
-        export ETHERSCAN_API_KEY=${{ secrets.ETHERSCAN_API_KEY }}
+      - name: Set environment variables
+        run: |
+          export MNEMONIC=${{ secrets.MNEMONIC }}
+          export KOVAN_RPC_NODE=${{ secrets.KOVAN_RPC_NODE }}
+          export ETHERSCAN_API_KEY=${{ secrets.ETHERSCAN_API_KEY }}
 
-    - name: Compile and deploy contracts
-      run: truffle migrate --network kovan
+      - name: Compile and deploy contracts
+        run: truffle migrate --network kovan
 
-    - name: Verify contracts
-      run: npm run contracts:verify
+      - name: Verify contracts
+        run: npm run contracts:verify
+      
+      - name: Expose Deployed Addresses
+        runs: |
+          export OCTOBAY_ADDRESS=$(node get-contract-address Octobay)
+      
+      - name: Test
+        runs: echo $OCTOBAY_ADDRESS
 
-    - name: Prepare Subgraph Manifest
-      run: node prepare-subgraph-manifest
+  #     - name: Update Octobay Address in Octobay Organization Secrets
+  #       uses: hmanzur/actions-set-secret@v2.0.0
+  #       with:
+  #         name: 'KOVAN_OCTOBAY_ADDRESS'
+  #         value: 'Lorem ipsun dolor simit'
+  #         repository: 'octobay'
+  #         token: ${{ secrets.PAT }}
+  #         org: true
+  #         visibility: 'all'
 
-    - name: Generate code for Subgraph 
-      run: npm run subgraph:codegen
+  # deploy-subgraph:
+  #   name: Deploy Subgraph
+  #   runs-on: ubuntu-latest
+  #   needs: [ deploy-contracts ]
+  #   steps:
+  #     - name: Prepare Subgraph Manifest
+  #       run: node prepare-subgraph-manifest
 
-    - name: Subgraph Auth
-      run: graph auth https://api.thegraph.com/deploy/ ${{ secrets.SUBGRAPH_ACCESS_TOKEN }}
+  #     - name: Generate code for Subgraph 
+  #       run: npm run subgraph:codegen
 
-    - name: Deploy Subgraph
-      run: npm run subgraph:deploy-dev
+  #     - name: Subgraph Auth
+  #       run: graph auth https://api.thegraph.com/deploy/ ${{ secrets.SUBGRAPH_ACCESS_TOKEN }}
+
+  #     - name: Deploy Subgraph
+  #       run: npm run subgraph:deploy-dev
