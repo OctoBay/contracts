@@ -5,6 +5,7 @@ on:
     branches: [ development ]
     paths:
       - 'contracts/**'
+      - '.github/**'
 
 jobs:
   deploy-contracts:
