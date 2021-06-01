@@ -36,11 +36,11 @@ jobs:
         run: npm run contracts:verify
       
       - name: Expose Deployed Addresses
-        runs: |
+        run: |
           export OCTOBAY_ADDRESS=$(node get-contract-address Octobay)
       
       - name: Test
-        runs: echo $OCTOBAY_ADDRESS
+        run: echo $OCTOBAY_ADDRESS
 
   #     - name: Update Octobay Address in Octobay Organization Secrets
   #       uses: hmanzur/actions-set-secret@v2.0.0
