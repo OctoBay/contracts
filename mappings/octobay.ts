@@ -6,8 +6,8 @@ import {
   SetOctobayGovernorEvent,
   SetOctobayGovNFTEvent,
   SetEthUSDPriceFeedEvent
-} from '../types/Octobay/Octobay'
-import { Config } from '../types/schema'
+} from '../generated/Octobay/Octobay'
+import { Config } from '../generated/schema'
 import { ethereum } from "@graphprotocol/graph-ts";
 
 function loadConfig(event: ethereum.Event): Config {

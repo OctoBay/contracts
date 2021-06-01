@@ -1,5 +1,5 @@
-import { DepartmentCreatedEvent, ProposalCreatedEvent, VoteCastEvent, AwardGovernanceTokensEvent } from '../types/OctobayGovernor/OctobayGovernor'
-import { GovernanceDepartment, GovernanceProposal, GovernanceProposalVote, GovernanceTokenHolder } from '../types/schema'
+import { DepartmentCreatedEvent, ProposalCreatedEvent, VoteCastEvent, AwardGovernanceTokensEvent } from '../generated/OctobayGovernor/OctobayGovernor'
+import { GovernanceDepartment, GovernanceProposal, GovernanceProposalVote, GovernanceTokenHolder } from '../generated/schema'
 
 export function handleDepartmentCreatedEvent(event: DepartmentCreatedEvent): void {
   let department = new GovernanceDepartment(event.params.tokenAddress.toHexString())

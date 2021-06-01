@@ -1,5 +1,5 @@
-import { OctobayGovNFT, MintNFTForGovTokenEvent, Transfer } from '../types/OctobayGovNFT/OctobayGovNFT'
-import { GovernancePermissionNFT } from '../types/schema'
+import { OctobayGovNFT, MintNFTForGovTokenEvent, Transfer } from '../generated/OctobayGovNFT/OctobayGovNFT'
+import { GovernancePermissionNFT } from '../generated/schema'
 
 export function handleMintNFTForGovTokenEvent(event: MintNFTForGovTokenEvent): void {
   let nft = new GovernancePermissionNFT(event.params.tokenId.toString())

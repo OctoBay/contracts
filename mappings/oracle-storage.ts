@@ -1,6 +1,6 @@
 import { BigInt, store } from '@graphprotocol/graph-ts'
-import { OracleStorage, OracleAddedEvent, OracleRemovedEvent, OracleJobRemovedEvent, OracleJobAddedEvent } from '../types/OracleStorage/OracleStorage'
-import { Oracle, OracleJob } from '../types/schema'
+import { OracleStorage, OracleAddedEvent, OracleRemovedEvent, OracleJobRemovedEvent, OracleJobAddedEvent } from '../generated/OracleStorage/OracleStorage'
+import { Oracle, OracleJob } from '../generated/schema'
 
 export function handleOracleAddedEvent(event: OracleAddedEvent): void {
   let oracleStorage = OracleStorage.bind(event.address)

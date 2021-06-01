@@ -1,5 +1,5 @@
-import { UserAddressAddedEvent } from '../types/UserAddressStorage/UserAddressStorage'
-import { User, UserAddress } from '../types/schema'
+import { UserAddressAddedEvent } from '../generated/UserAddressStorage/UserAddressStorage'
+import { User, UserAddress } from '../generated/schema'
 
 export function handleUserAddressAddedEvent(event: UserAddressAddedEvent): void {
   let user = User.load(event.params.userId)

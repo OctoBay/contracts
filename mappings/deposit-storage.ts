@@ -6,8 +6,8 @@ import {
   UserDepositEvent,
   WithdrawUserDepositEvent,
   RefundUserDepositEvent
-} from '../types/DepositStorage/DepositStorage'
-import { Issue, IssueDeposit, User, UserDeposit } from '../types/schema'
+} from '../generated/DepositStorage/DepositStorage'
+import { Issue, IssueDeposit, User, UserDeposit } from '../generated/schema'
 
 export function handleIssueDepositEvent(event: IssueDepositEvent): void {
   let issue = Issue.load(event.params.issueId)

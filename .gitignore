@@ -3,3 +3,6 @@ build
 .env
 .mnemonic
 *.swp
+subgraph.yaml
+types
+abis

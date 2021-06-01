@@ -1,0 +1,48 @@
+name: "Update Development Deployment"
+
+on:
+  push:
+    branches: [ development ]
+    paths:
+      - 'contracts/**'
+
+jobs:
+  deploy:
+    name: Deploy Contracts and Subgraph (Kovan)
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+        with:
+          node-version: '14.15.5'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Set environment variables
+      run: |
+        export MNEMONIC=${{ secrets.MNEMONIC }}
+        export KOVAN_RPC_NODE=${{ secrets.KOVAN_RPC_NODE }}
+        export ETHERSCAN_API_KEY=${{ secrets.ETHERSCAN_API_KEY }}
+
+    - name: Compile and deploy contracts
+      run: truffle migrate --network kovan
+
+    - name: Verify contracts
+      run: npm run contracts:verify
+
+    - name: Prepare Subgraph Manifest
+      run: node prepare-subgraph-manifest
+
+    - name: Generate code for Subgraph 
+      run: npm run subgraph:codegen
+
+    - name: Subgraph Auth
+      run: graph auth https://api.thegraph.com/deploy/ ${{ secrets.SUBGRAPH_ACCESS_TOKEN }}
+
+    - name: Deploy Subgraph
+      run: npm run subgraph:deploy-dev

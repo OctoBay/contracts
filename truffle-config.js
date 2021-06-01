@@ -20,13 +20,6 @@
 
 require('dotenv').config({ path: './.env' })
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const fs = require('fs');
-let mnemonic = ''
-try {
-  mnemonic = fs.readFileSync(".mnemonic").toString().trim();
-} catch {
-  console.log('No mnemonic file found. Using random one.')
-}
 
 module.exports = {
   /**
@@ -68,7 +61,7 @@ module.exports = {
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
     kovan: {
-      provider: () => new HDWalletProvider(mnemonic, `wss://kovan.infura.io/ws/v3/${process.env.KOVAN_API_KEY}`),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, process.env.KOVAN_RPC_NODE),
       network_id: 42,       // Ropsten's id
       gas: 5500000,        // Ropsten has a lower block limit than mainnet
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)

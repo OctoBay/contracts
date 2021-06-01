@@ -8,9 +8,9 @@ dataSources:
     name: Octobay
     network: kovan
     source:
-      address: '0xebA62e624596042F97f57120A490Dd78750B41f9'
+      address: '{{OCTOBAY_ADDRESS}}'
       abi: Octobay
-      startBlock: 24674539
+      startBlock: {{ BLOCK_NUMBER }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -19,7 +19,7 @@ dataSources:
         - Config
       abis:
         - name: Octobay
-          file: ./abis/Octobay.json
+          file: ./build/contracts/Octobay.json
       eventHandlers:
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
@@ -40,9 +40,9 @@ dataSources:
     name: DepositStorage
     network: kovan
     source:
-      address: '0x8b648a4148F4bF3Cdf95175D8ad22FCcC962Bb0f'
+      address: '{{ DEPOSIT_STORAGE_ADDRESS }}'
       abi: DepositStorage
-      startBlock: 24674539
+      startBlock: {{ BLOCK_NUMBER }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -54,7 +54,7 @@ dataSources:
         - UserDeposit
       abis:
         - name: DepositStorage
-          file: ./abis/DepositStorage.json
+          file: ./build/contracts/DepositStorage.json
       eventHandlers:
         - event: IssueDepositEvent(address,uint256,string,uint256)
           handler: handleIssueDepositEvent
@@ -73,9 +73,9 @@ dataSources:
     name: UserAddressStorage
     network: kovan
     source:
-      address: '0x2FD475158789Fe702B56522217cc2b6a33D5959A'
+      address: '{{ USER_ADDRESS_STORAGE_ADDRESS }}'
       abi: UserAddressStorage
-      startBlock: 24674539
+      startBlock: {{ BLOCK_NUMBER }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -85,7 +85,7 @@ dataSources:
         - UserAddress
       abis:
         - name: UserAddressStorage
-          file: ./abis/UserAddressStorage.json
+          file: ./build/contracts/UserAddressStorage.json
       eventHandlers:
         - event: UserAddressAddedEvent(string,bytes32,address)
           handler: handleUserAddressAddedEvent
@@ -94,9 +94,9 @@ dataSources:
     name: OracleStorage
     network: kovan
     source:
-      address: '0x8c9035A830d375Fe42f7e6a18B67482820Afa5b4'
+      address: '{{ ORACLE_STORAGE_ADDRESS }}'
       abi: OracleStorage
-      startBlock: 24674539
+      startBlock: {{ BLOCK_NUMBER }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -106,7 +106,7 @@ dataSources:
         - OracleJob
       abis:
         - name: OracleStorage
-          file: ./abis/OracleStorage.json
+          file: ./build/contracts/OracleStorage.json
       eventHandlers:
         - event: OracleAddedEvent(address,string)
           handler: handleOracleAddedEvent
@@ -121,9 +121,9 @@ dataSources:
     name: OctobayGovernor
     network: kovan
     source:
-      address: '0xc85EcBB6d32EcbF307553aebeDbc7bC23129766D'
+      address: '{{ GOVERNOR_ADDRESS }}'
       abi: OctobayGovernor
-      startBlock: 24674539
+      startBlock: {{ BLOCK_NUMBER }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -135,7 +135,7 @@ dataSources:
         - GovernanceProposalVote
       abis:
         - name: OctobayGovernor
-          file: ./abis/OctobayGovernor.json
+          file: ./build/contracts/OctobayGovernor.json
       eventHandlers:
         - event: DepartmentCreatedEvent(address,string,uint16,uint16,string,string,address)
           handler: handleDepartmentCreatedEvent
@@ -150,9 +150,9 @@ dataSources:
     name: OctobayGovNFT
     network: kovan
     source:
-      address: '0x399789E892053C017b07158bc0bE03E03D9536Ed'
+      address: '{{ GOV_NFT_ADDRESS }}'
       abi: OctobayGovNFT
-      startBlock: 24674539
+      startBlock: {{ BLOCK_NUMBER }}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -161,7 +161,7 @@ dataSources:
         - GovernancePermissionNFT
       abis:
         - name: OctobayGovNFT
-          file: ./abis/OctobayGovNFT.json
+          file: ./build/contracts/OctobayGovNFT.json
       eventHandlers:
         - event: MintNFTForGovTokenEvent(address,uint256,address)
           handler: handleMintNFTForGovTokenEvent
