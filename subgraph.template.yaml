@@ -8,7 +8,7 @@ dataSources:
     name: Octobay
     network: kovan
     source:
-      address: '{{OCTOBAY_ADDRESS}}'
+      address: '{{ OCTOBAY_ADDRESS }}'
       abi: Octobay
       startBlock: {{ BLOCK_NUMBER }}
     mapping:
