@@ -16,7 +16,7 @@ web3.eth.getTransactionReceipt(OCTOBAY.transactionHash).then(tx => {
     .replace('{{ ORACLE_STORAGE_ADDRESS }}', require(`./build/contracts/OracleStorage.json`).networks[42].address)
     .replace('{{ GOVERNOR_ADDRESS }}', require(`./build/contracts/OctobayGovernor.json`).networks[42].address)
     .replace('{{ GOV_NFT_ADDRESS }}', require(`./build/contracts/OctobayGovNFT.json`).networks[42].address)
-    .replaceAll('{{ BLOCK_NUMBER }}', tx.blockNumber)
+    .replace(/{{ BLOCK_NUMBER }}/g, tx.blockNumber)
   
   fs.writeFileSync(`./subgraph.yaml`, manifestTemplate)
 }).catch(console.error)
