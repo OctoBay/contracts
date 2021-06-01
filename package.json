@@ -5,6 +5,7 @@
   "private": true,
   "main": "truffle-config.js",
   "scripts": {
+    "contracts:deploy": "truffle migrate --network kovan",
     "contracts:verify": "npm run contracts:verify:kovan:address-storage; npm run contracts:verify:kovan:oracle-storage; npm run contracts:verify:kovan:deposit-storage; npm run contracts:verify:kovan:govnft; npm run contracts:verify:kovan:governor; npm run contracts:verify:kovan:octobay",
     "contracts:verify:kovan:address-storage": "truffle run verify UserAddressStorage --network kovan",
     "contracts:verify:kovan:oracle-storage": "truffle run verify OracleStorage --network kovan",

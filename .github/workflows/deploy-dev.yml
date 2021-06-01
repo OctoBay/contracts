@@ -31,7 +31,7 @@ jobs:
           export ETHERSCAN_API_KEY=${{ secrets.ETHERSCAN_API_KEY }}
 
       - name: Compile and deploy contracts
-        run: truffle migrate --network kovan
+        run: npm run contracts:deploy
 
       - name: Verify contracts
         run: npm run contracts:verify
